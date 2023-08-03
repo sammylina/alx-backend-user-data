@@ -7,19 +7,6 @@ import re
 from typing import List
 
 
-def filter_datum(fields: List[str],
-                 redaction: str,
-                 message: str,
-                 separator: str) -> str:
-    """obfuscate field values from message
-    """
-    for field in fields:
-        message = re.sub(r'{}=.*?{}'.format(field, separator),
-                         '{}={}{}'.format(field, redaction, separator),
-                         message)
-    return message
-
-
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
         """
@@ -39,3 +26,16 @@ class RedactingFormatter(logging.Formatter):
                             self.REDACTION,
                             super(RedactingFormatter, self).format(record),
                             self.SEPARATOR)
+
+
+def filter_datum(fields: List[str],
+                 redaction: str,
+                 message: str,
+                 separator: str) -> str:
+    """obfuscate field values from message
+    """
+    for field in fields:
+        message = re.sub(r'{}=.*?{}'.format(field, separator),
+                         '{}={}{}'.format(field, redaction, separator),
+                         message)
+    return message
