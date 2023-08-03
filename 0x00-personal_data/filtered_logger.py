@@ -13,7 +13,7 @@ def filter_datum(fields: List[str],
     """obfuscate field values from message
     """
     for field in fields:
-        message = re.sub(r'{}=.*?;'.format(field),
+        message = re.sub(r'{}=.*?{}'.format(field, separator),
                          '{}={}{}'.format(field, redaction, separator),
                          message)
     return message
