@@ -23,6 +23,13 @@ if auth_type == 'auth':
 
 @app.before_request
 def request_validator():
+    """vaidate incoming request
+    IF
+        - authentication header is provided
+        - requested path require authentication
+        - there is authorization header value
+        - there is user
+    """
     excluded_list = ['/api/v1/status/', '/api/v1/unauthorized/',
                      '/api/v1/forbidden/']
     if auth is None:
