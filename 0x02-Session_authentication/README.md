@@ -1,4 +1,4 @@
-# Simple API
+# Simple API with Session Authentication
 
 Simple HTTP API for playing with `User` model.
 
