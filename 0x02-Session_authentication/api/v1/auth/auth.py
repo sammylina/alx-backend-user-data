@@ -36,3 +36,19 @@ class Auth:
         """ Provide current user, if any
         """
         return None
+
+    def session_cookie(self, request=None):
+        """ Get cookie value from request object
+        """
+        import os
+
+        if request is None:
+            return None
+
+        cookie_name = os.environ.get('SESSION_NAME')
+
+        if cookie_name:
+            cookie = request.cookies.get(cookie_name)
+            return cookie
+
+        return None
